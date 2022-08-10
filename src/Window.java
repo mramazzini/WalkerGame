@@ -12,8 +12,8 @@ public class Window {
         mainPanel.setFocusable(true);
         frame.add(mainPanel);
         frame.setVisible(true);
-        frame.setTitle("GameTest");
-        frame.setSize(800, 600);
+        frame.setTitle("Frederick The Penguin");
+        frame.setSize(1040, 807);
 
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 

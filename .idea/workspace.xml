@@ -1,15 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0da63e30-a201-4c31-ae82-0c635c075fce" name="Changes" comment="Init Commit">
-      <change afterPath="$PROJECT_DIR$/Assets/Char.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Walking1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Walking2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Character.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Panel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Window.java" afterDir="false" />
+    <list default="true" id="0da63e30-a201-4c31-ae82-0c635c075fce" name="Changes" comment="-Implemented Thread&#10;-Implemented Graphics&#10;-Implemented KeyListener&#10;-Crated Basic Character Class">
+      <change afterPath="$PROJECT_DIR$/Assets/Frederick.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Frederick0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Frederick1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Frederick2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Frederick3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/FrederickMald0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/FrederickMald1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/FrederickMald2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/FrederickMald3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/FrederickMald4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/FrederickMald5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/PlatBlue1024.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/PlatBlue256.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/PlatBlue512.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TestPlatform.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/BluePlat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Collider.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/FrameHolder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Frederick.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Platform.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/TestPlatform.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Character.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Character.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Panel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Panel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Window.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Window.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,12 +54,12 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Matteo Ramazzini\IdeaProjects\WalkerGame\Assets" />
@@ -78,7 +95,14 @@
       <option name="project" value="LOCAL" />
       <updated>1659985740755</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="-Implemented Thread&#10;-Implemented Graphics&#10;-Implemented KeyListener&#10;-Crated Basic Character Class">
+      <created>1659993988778</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1659993988778</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -94,6 +118,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Init Commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Init Commit" />
+    <MESSAGE value="-Implemented Thread&#10;-Implemented Graphics&#10;-Implemented KeyListener&#10;-Crated Basic Character Class" />
+    <option name="LAST_COMMIT_MESSAGE" value="-Implemented Thread&#10;-Implemented Graphics&#10;-Implemented KeyListener&#10;-Crated Basic Character Class" />
   </component>
 </project>
