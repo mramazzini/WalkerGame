@@ -8,8 +8,11 @@ public class FrameHolder {
 
     private BufferedImage[] frames;
     private int currentFrame;
-
+    private int framePause; //How many frames the animation should skip on the main thread
+    private int currFramePause;
     public FrameHolder(String[] path){
+        framePause=1;
+        currFramePause=0;
         //Fills the BufferedImage Variables with the stored Files
         try {
             frames = new BufferedImage[0];
@@ -25,6 +28,21 @@ public class FrameHolder {
 
         }
     }
+    public void setFramePause(int x){
+        framePause = x;
+    }
+
+    public int getFramePause() {
+        return framePause;
+    }
+    public void setCurrFramePause(int x){
+        currFramePause = x;
+    }
+
+    public int getCurrFramePause() {
+        return currFramePause;
+    }
+
     public BufferedImage[] getFrames(){
         return frames;
     }

@@ -1,30 +1,30 @@
-import javax.imageio.ImageIO;
-import javax.swing.*;
-import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.nio.Buffer;
-import java.util.Arrays;
 
 
-public class Character {
+public abstract class Character {
     //Stores the frames of the character
 
 
     //Holds the hitbox
-    private Boolean hasHitBox;
+    private Boolean hasHitBox=false;
     private Collider hitBox;
     private int width;
     private int length;
+    private String directionX; //Left or Right
+
 
     FrameHolder frameHolder;
+    private String type;
     private int maxSpeedX = 10;
     private int maxSpeedY = 20;
+    private int initX;
+    private int initY;
     private int velX;
     private int velY;
+    private HPBar hp;
     //X and Y pixelValues on the screen
     private int xVal;
+    private boolean hasHP;
     private int yVal;
     private int prevX;
     private int prevY;
@@ -33,13 +33,30 @@ public class Character {
     private boolean hasGravity;
     private final int GRAVSPEED = 5;
 
+
+
     public void setFrameHolder(String[] path){
         frameHolder = new FrameHolder(path);
     }
     public BufferedImage getFrame(){
         return frameHolder.getCurrentFrame();
     }
-
+    public void initHP(int maxHP, int hpx, int hpy){
+        hasHP = true;
+        hp = new HPBar(maxHP, hpx, hpy);
+    }
+    public HPBar getHP() {
+        return hp;
+    }
+    public void setType(String t){
+        type=t;
+    }
+    public String getType(){
+        return type;
+    }
+    public BufferedImage getHpImg(){
+        return hp.getFrameHolder().getCurrentFrame();
+    }
     public int getWidth(){
         return width;
     }
@@ -57,6 +74,9 @@ public class Character {
     }
     public void setX(int updateX){
         xVal = xVal+updateX;
+        if(hasHP){
+            getHP().setxVal(getHP().getxVal()+updateX);
+        }
         if(hasHitBox){
             hitBox.setxLeft(hitBox.getxLeft()+updateX);
             hitBox.setxRight(hitBox.getxRight()+updateX);
@@ -67,6 +87,9 @@ public class Character {
     }
     public void setY(int updateY){
         yVal = yVal + updateY;
+        if(hasHP){
+            getHP().setyVal(getHP().getyVal()+updateY);
+        }
         if(hasHitBox){
             hitBox.setyTop(hitBox.getyTop()+updateY);
             hitBox.setyBot(hitBox.getyBot()+updateY);
@@ -80,6 +103,9 @@ public class Character {
     }
     public boolean getHasHitBox(){
         return hasHitBox;
+    }
+    public boolean hasHp(){
+        return hasHP;
     }
 
     public void fall(){
@@ -110,7 +136,12 @@ public class Character {
 
         setY(velY);
         setX(velX);
-
+        if(velX>0){
+            directionX="right";
+        }
+        if(velX<0){
+            directionX="left";
+        }
     }
 
     public Collider getHitBox(){
@@ -144,6 +175,22 @@ public class Character {
     public int getVelY(){
         return velY;
     }
+    public void setInitX(int x){
+        initX=x;
+    }
+    public void setInitY(int y){
+        initY=y;
+    }
+    public int getInitX(){
+        return initX;
+    }
+    public int getInitY(){
+        return initY;
+    }
+    public String getDirectionX(){
+        return directionX;
+    }
+
 
     public void setFalling(boolean b){
         isFalling=b;

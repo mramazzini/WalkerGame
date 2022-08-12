@@ -9,27 +9,22 @@ import java.util.ArrayList;
 
 //Holds Graphics, Main Thread, and KeyListener
 class Panel extends JPanel implements KeyListener, Runnable {
-
-    private final Frederick frederick;
-
-    private BluePlat basePlatform;
-    private BluePlat plat1;
-    private BluePlat plat2;
-    private BluePlat plat3;
-    private BluePlat plat4;
     private final int WIDTH = 1028;
     private final int HEIGHT = 768;
     private ArrayList<java.lang.Character> keyPressed;
     private int key;
 
-    private Platform[] platforms;
+    private Level currentLevel;
+    private Frederick frederick;
 
     public Panel() throws IOException {
 
-        frederick = new Frederick();
-        keyPressed = new ArrayList<java.lang.Character>();
 
-        buildPlatforms();
+        keyPressed = new ArrayList<java.lang.Character>();
+        initLevel(0);
+        frederick = currentLevel.getFrederick();
+
+
 
         new Thread(this).start();
         this.addKeyListener(this);
@@ -43,16 +38,17 @@ class Panel extends JPanel implements KeyListener, Runnable {
 
         super.paintComponent(g);
         g.fillRect(0,0, WIDTH, HEIGHT);
-        g.drawImage(frederick.getFrame(), frederick.getX(), frederick.getY(), null);
+        currentLevel.drawLevel(g);
         g.setFont(new Font("Monospaced",Font.BOLD+Font.ITALIC,100));
         g.setColor(Color.BLUE);
-        g.drawString("I am Birb", 30, 400);
+        //g.drawString("Frederick ", 30, 400);
+
         //Fredericks hitbox
         //g.drawRect(frederick.getHitBox().getxLeft(), frederick.getHitBox().getyTop(), frederick.getHitBox().getxRight()-frederick.getHitBox().getxLeft(), frederick.getHitBox().getyBot()- frederick.getHitBox().getyTop());
-        for(int i=0; i<platforms.length; i++){
-            g.drawImage(platforms[i].getFrame(), platforms[i].getX(), platforms[i].getY(), null);
-        }
+
+
     }
+
 
     //so our panel is the correct size when pack() is called on Jframe
     @Override
@@ -73,123 +69,24 @@ class Panel extends JPanel implements KeyListener, Runnable {
 
             repaint();
 
-            updateFrederick();
+            updateCharacters();
 
         }
     }
 
-    public void updateFrederick(){
-
-        if(frederick.isFalling()) {
-            frederick.fallingSpeedIncrement();
-        }
-        else{
-            frederick.resetFallingSpeed();
-        }
-        if(frederick.getVelY()>=0){
-            frederick.setFalling(false);
-        }
-        if(keyPressed.contains('w')){ //w
-            frederick.setFalling(true);
-
-            frederick.setVelY(-20+frederick.getFallingSpeed());
-            System.out.println(frederick.getFallingSpeed());
-
-
-        }
-
-        if (keyPressed.contains('s')) { //s
-            frederick.setVelY(1);
-        }
-        if(!frederick.isAttacking()){
-            if(keyPressed.contains('a')){ //a
-                frederick.setVelX(-1);
-                if(frederick.frameHolder.getFrameNum()==3){
-                    frederick.frameHolder.updateFrame(2);
-                }
-                else{
-                    frederick.frameHolder.updateFrame(3);
-                }
-            }
-            if(keyPressed.contains('d')) { //d
-                frederick.setVelX(1);
-                if (frederick.frameHolder.getFrameNum()==0) {
-                    frederick.frameHolder.updateFrame(1);
-                } else {
-                    frederick.frameHolder.updateFrame(0);
-                }
-            }
-
-
-        }
-        else {
-            if(keyPressed.contains('a')){ //a
-                frederick.setVelX(-1);
-                if(frederick.frameHolder.getFrameNum()!=8 && frederick.frameHolder.getFrameNum()!=9){
-                    frederick.frameHolder.updateFrame(8);
-                }
-                else if(frederick.frameHolder.getFrameNum() !=9){
-                    frederick.frameHolder.updateFrame(9);
-
-                }
-                else{
-                    frederick.frameHolder.updateFrame(7);
-                    frederick.setAttacking(false);
-                }
-            }
-            if(keyPressed.contains('d')) { //d
-                frederick.setVelX(1);
-                if (frederick.frameHolder.getFrameNum() != 5 && frederick.frameHolder.getFrameNum()!=6) {
-                    frederick.frameHolder.updateFrame(5);
-                }
-                else if(frederick.frameHolder.getFrameNum() !=6){
-                    frederick.frameHolder.updateFrame(6);
-
-                }
-                else{
-                    frederick.frameHolder.updateFrame(4);
-                    frederick.setAttacking(false);
-                }
-            }
-            if(!keyPressed.contains('d') && !keyPressed.contains('a')){
-                if(frederick.frameHolder.getFrameNum() ==4 || frederick.frameHolder.getFrameNum() ==1 ||frederick.frameHolder.getFrameNum() ==0){
-                    frederick.frameHolder.updateFrame(5);
-                }
-                else if(frederick.frameHolder.getFrameNum() ==5){
-                    frederick.frameHolder.updateFrame(6);
-
-                }
-                else if(frederick.frameHolder.getFrameNum() == 6){
-                    frederick.frameHolder.updateFrame(4);
-                    frederick.setAttacking(false);
-                }
-                else if(frederick.frameHolder.getFrameNum() ==7 || frederick.frameHolder.getFrameNum() ==2 || frederick.frameHolder.getFrameNum() ==3){
-                    frederick.frameHolder.updateFrame(8);
-                }
-                else if(frederick.frameHolder.getFrameNum() ==8){
-                    frederick.frameHolder.updateFrame(9);
-                }
-                else if(frederick.frameHolder.getFrameNum() ==9){
-                    frederick.frameHolder.updateFrame(7);
-                    frederick.setAttacking(false);
-                }
-
-            }
-        }
-        if (keyPressed.contains(' ')) { //Spacebar
-            frederick.setAttacking(true);
-        }
-        frederick.refresh();
+    public void updateCharacters(){
+        currentLevel.refreshCharacters();
+        frederick.frederickState(keyPressed);
         isFrederickDumb();
 
     }
 
     public void isFrederickDumb(){ //Keeps Frederick from going into a wall
-        if(frederick.getHitBox().checkFrederickCollision(platforms)){
+        if(frederick.getHitBox().checkFrederickCollision(currentLevel.getPlatforms())){
             frederick.setY(-frederick.getY()+frederick.getPrevY());
             frederick.setVelY(-frederick.getVelY());
         }
-        if(frederick.getHitBox().checkFrederickCollision(platforms)) {
+        if(frederick.getHitBox().checkFrederickCollision(currentLevel.getPlatforms())) {
             frederick.setX(-frederick.getX() + frederick.getPrevX());
             frederick.setVelX(-frederick.getVelX());
         }
@@ -199,12 +96,9 @@ class Panel extends JPanel implements KeyListener, Runnable {
     public void keyTyped(KeyEvent e) {
 
     }
-    private void buildPlatforms(){
-        basePlatform = new BluePlat(0, 768-36, 1024);
-        plat1 = new BluePlat(0, 512-36, 512);
-        plat2 = new BluePlat(512, 256-36, 256);
-        plat3 = new BluePlat(256, 256-36, 256);
-        platforms = new Platform[]{basePlatform, plat1, plat2, plat3};
+    private void initLevel(int lvl) throws IOException {
+        currentLevel = new Level(0);
+
     }
     @Override
     public void keyPressed(KeyEvent e) {
@@ -224,6 +118,8 @@ class Panel extends JPanel implements KeyListener, Runnable {
         }
         if(key == 32){ //Spacebar
             addKey(' ');
+
+
         }
 
 
@@ -278,6 +174,7 @@ class Panel extends JPanel implements KeyListener, Runnable {
         }
         if(key == 32){
             removeKey(' ');
+
         }
 
     }
