@@ -1,76 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0da63e30-a201-4c31-ae82-0c635c075fce" name="Changes" comment="-Added Gravity&#10;-Added Frederick Physics&#10;-Created Platforms class">
-      <change afterPath="$PROJECT_DIR$/Assets/Frederick/Frederick0.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Frederick/Frederick1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Frederick/Frederick2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Frederick/Frederick3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Frederick/FrederickMald10.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Frederick/FrederickMald11.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Frederick/FrederickMald4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Frederick/FrederickMald5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Frederick/FrederickMald6.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Frederick/FrederickMald7.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Frederick/FrederickMald8.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Frederick/FrederickMald9.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Frederick/MiniFrederick/FrederickMald10.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Frederick/MiniFrederick/FrederickMald11.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Frederick/MiniFrederick/FrederickMald4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Frederick/MiniFrederick/FrederickMald5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Frederick/MiniFrederick/FrederickMald6.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Frederick/MiniFrederick/FrederickMald7.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Frederick/MiniFrederick/FrederickMald8.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Frederick/MiniFrederick/FrederickMald9.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/HPBar/HPBar0.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/HPBar/HPBar1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/HPBar/HPBar2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/HPBar/HPBar3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/HPBar/HPBar4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/HPBar/HPBar5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/HPBar/HPBar6.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/HPBar/HPBar7.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/SnowMan/SnowMan0.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/SnowMan/SnowMan1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/SnowMan/SnowMan2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/SnowMan/SnowMan3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/SnowMan/SnowManDeath10.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/SnowMan/SnowManDeath11.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/SnowMan/SnowManDeath12.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/SnowMan/SnowManDeath13.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/SnowMan/SnowManDeath14.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/SnowMan/SnowManDeath15.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/SnowMan/SnowManDeath16.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/SnowMan/SnowManDeath17.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/SnowMan/SnowManDeath4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/SnowMan/SnowManDeath5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/SnowMan/SnowManDeath6.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/SnowMan/SnowManDeath7.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/SnowMan/SnowManDeath8.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/SnowMan/SnowManDeath9.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Enemy.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/HPBar.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Level.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/SnowMan.java" afterDir="false" />
+    <list default="true" id="0da63e30-a201-4c31-ae82-0c635c075fce" name="Changes" comment="-Restructered code&#10;-added level class to place all objects in each level&#10;-added hp&#10;-added snowman">
+      <change afterPath="$PROJECT_DIR$/src/Camera.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Weapon.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Char.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Frederick.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Frederick0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Frederick1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Frederick2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Frederick3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FrederickMald0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FrederickMald1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FrederickMald2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FrederickMald3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FrederickMald4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FrederickMald5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TestPlatform.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Character.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Character.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FrameHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FrameHolder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Collider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Collider.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Frederick.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Frederick.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Level.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Level.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Panel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Panel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TestPlatform.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Platform.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Platform.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SnowMan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SnowMan.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Window.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Window.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -158,7 +99,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660090497761</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="-Restructered code&#10;-added level class to place all objects in each level&#10;-added hp&#10;-added snowman">
+      <created>1660344012976</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1660344012976</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -176,6 +124,7 @@
     <MESSAGE value="Init Commit" />
     <MESSAGE value="-Implemented Thread&#10;-Implemented Graphics&#10;-Implemented KeyListener&#10;-Crated Basic Character Class" />
     <MESSAGE value="-Added Gravity&#10;-Added Frederick Physics&#10;-Created Platforms class" />
-    <option name="LAST_COMMIT_MESSAGE" value="-Added Gravity&#10;-Added Frederick Physics&#10;-Created Platforms class" />
+    <MESSAGE value="-Restructered code&#10;-added level class to place all objects in each level&#10;-added hp&#10;-added snowman" />
+    <option name="LAST_COMMIT_MESSAGE" value="-Restructered code&#10;-added level class to place all objects in each level&#10;-added hp&#10;-added snowman" />
   </component>
 </project>

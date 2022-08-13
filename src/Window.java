@@ -13,7 +13,7 @@ public class Window {
         frame.add(mainPanel);
         frame.setVisible(true);
         frame.setTitle("Frederick The Penguin");
-        frame.setSize(1040, 807); //1028 x 768
+        frame.setSize(1040, 807); //1024 x 768
 
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 

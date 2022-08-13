@@ -5,8 +5,10 @@ public class Collider {
     private int yTop;
     private int yBot;
 
+    private String hitBoxType; //Hurtbox, solidObject, AttackBox, Camera
 
-    public Collider(int xL, int xR, int yT, int yB){
+    public Collider(int xL, int xR, int yT, int yB , String type){
+        hitBoxType=type;
         xLeft=xL;
         xRight=xR;
         yTop=yT;
@@ -25,9 +27,9 @@ public class Collider {
         return false;
     }
 
-    public boolean checkFrederickCollision(Platform[] platforms){
-        for(int i=0; i< platforms.length; i++){
-            if(checkCollision(platforms[i].getHitBox())){
+    public boolean checkFrederickCollision(Collider[] colliders){
+        for(int i=0; i< colliders.length; i++){
+            if(checkCollision(colliders[i])){
 
                 return true;
             }
@@ -42,6 +44,14 @@ public class Collider {
     public int[] getCorners(){
         int[] temp=new int[]{xLeft,xRight,yTop,yBot};
         return temp;
+    }
+
+    public String getHitBoxType() {
+        return hitBoxType;
+    }
+
+    public void setHitBoxType(String hitBoxType) {
+        this.hitBoxType = hitBoxType;
     }
 
     public void setxLeft(int xLeft) {

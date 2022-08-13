@@ -12,7 +12,7 @@ public class SnowMan extends Enemy{
         initHP(20, getX(), getY());
         setWidth(128);
         setLength(128);
-        createHitBox(getX() + getWidth() *1/ 3, getX() + getWidth() * 2 / 3, getY()+8, getY() + getLength()-8);
+        createHitBox(getX() + getWidth()*1/5 , getX()  +getWidth() *4/5 , getY()+getLength()*1/3, getY() + getLength());
         setFrameHolder(new String[]{
                 "Assets/SnowMan/SnowMan0.png",
                 "Assets/SnowMan/SnowMan1.png",

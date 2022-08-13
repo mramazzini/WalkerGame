@@ -9,11 +9,13 @@ public class Frederick extends Character {
     private boolean isAttacking;
 
     public Frederick() throws IOException {
+        createWeapon("sword");
+        createDmgBoxes(getCurrentWeapon().getHitBoxInt(0));
         setType("frederick");
         isAttacking=false;
         stance = "Battle";
         initGravity();
-        initHP(100, getX(), getY());
+        initHP(100, getX()+64, getY()+64);
         setWidth(128);
         setLength(128);
         createHitBox(getX() + 43+64, getX() + 85+64, getY()+8+128, getY() + getLength()-8+128);
@@ -63,10 +65,18 @@ public class Frederick extends Character {
         }
         if(frameHolder.getCurrFramePause() == frameHolder.getFramePause()) {
 
+
+
                     if(!isAttacking()){
+                        if(frameHolder.getFrameNum() ==11){
+                            frameHolder.updateFrame(2);
+                        }
+                        else if(frameHolder.getFrameNum() == 7){
+                            frameHolder.updateFrame(0);
+                        }
                         if(arr.contains('a')){ //a
 
-                            if(frameHolder.getFrameNum()==3){
+                            if(frameHolder.getFrameNum()==3 ){
                                 frameHolder.updateFrame(2);
                             }
                             else{
@@ -75,7 +85,7 @@ public class Frederick extends Character {
                         }
                         if(arr.contains('d')) { //d
 
-                            if (frameHolder.getFrameNum()==0) {
+                            if (frameHolder.getFrameNum()==0 ) {
                                 frameHolder.updateFrame(1);
                             } else {
                                 frameHolder.updateFrame(0);
@@ -151,6 +161,7 @@ public class Frederick extends Character {
                                 setAttacking(false);
                             }
 
+
                         }
                     }
 
@@ -186,4 +197,6 @@ public class Frederick extends Character {
     public void setAttacking(boolean b){
         isAttacking=b;
     }
+
+
 }

@@ -63,7 +63,7 @@ public class Platform{
     }
     public void createHitBox(int x, int y, int width, int height){
         hasHitBox = true;
-        hitBox = new Collider(x,y,width,height);
+        hitBox = new Collider(x,y,width,height, "solidObject");
     }
 
 

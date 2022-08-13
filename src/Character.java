@@ -1,17 +1,21 @@
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 
 public abstract class Character {
-    //Stores the frames of the character
+
 
 
     //Holds the hitbox
+    private Weapon currentWeapon;
+    private boolean hasWeapon=false;
     private Boolean hasHitBox=false;
     private Collider hitBox;
     private int width;
     private int length;
     private String directionX; //Left or Right
-
+    private ArrayList<Collider> hurtBoxes;
+    private ArrayList<Collider> dmgBoxes;
 
     FrameHolder frameHolder;
     private String type;
@@ -34,7 +38,22 @@ public abstract class Character {
     private final int GRAVSPEED = 5;
 
 
-
+    public void createHurtBoxes(int[][] vals){
+        hurtBoxes = new ArrayList<Collider>();
+        for(int i=0; i<vals[0].length; i++){
+            hurtBoxes.add(new Collider(vals[i][0], vals[i][1], vals[i][2], vals[i][3], "hurtBox"));
+        }
+    }
+    public void createWeapon(String type){
+        hasWeapon=true;
+        currentWeapon=new Weapon(xVal,yVal,type);
+    }
+    public void createDmgBoxes(int[][] vals){
+        hurtBoxes = new ArrayList<Collider>();
+        for(int i=0; i<vals.length; i++){
+            hurtBoxes.add(new Collider(vals[i][0], vals[i][1], vals[i][2], vals[i][3], "hurtBox"));
+        }
+    }
     public void setFrameHolder(String[] path){
         frameHolder = new FrameHolder(path);
     }
@@ -48,6 +67,11 @@ public abstract class Character {
     public HPBar getHP() {
         return hp;
     }
+
+    public Weapon getCurrentWeapon() {
+        return currentWeapon;
+    }
+
     public void setType(String t){
         type=t;
     }
@@ -75,7 +99,10 @@ public abstract class Character {
     public void setX(int updateX){
         xVal = xVal+updateX;
         if(hasHP){
-            getHP().setxVal(getHP().getxVal()+updateX);
+            hp.setxVal(hp.getxVal()+updateX);
+        }
+        if(hasWeapon){
+            currentWeapon.setX(currentWeapon.getX()+updateX);
         }
         if(hasHitBox){
             hitBox.setxLeft(hitBox.getxLeft()+updateX);
@@ -88,7 +115,10 @@ public abstract class Character {
     public void setY(int updateY){
         yVal = yVal + updateY;
         if(hasHP){
-            getHP().setyVal(getHP().getyVal()+updateY);
+            hp.setyVal(hp.getyVal()+updateY);
+        }
+        if(hasWeapon){
+            currentWeapon.setY(currentWeapon.getY()+updateY);
         }
         if(hasHitBox){
             hitBox.setyTop(hitBox.getyTop()+updateY);
@@ -142,6 +172,7 @@ public abstract class Character {
         if(velX<0){
             directionX="left";
         }
+
     }
 
     public Collider getHitBox(){
@@ -149,7 +180,7 @@ public abstract class Character {
     }
     public void createHitBox(int x, int y, int width, int height){
         hasHitBox = true;
-        hitBox = new Collider(x,y,width,height);
+        hitBox = new Collider(x,y,width,height, "solidObject");
     }
     public int getPrevX(){
         return prevX;

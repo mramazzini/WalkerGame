@@ -9,20 +9,20 @@ import java.util.ArrayList;
 
 //Holds Graphics, Main Thread, and KeyListener
 class Panel extends JPanel implements KeyListener, Runnable {
-    private final int WIDTH = 1028;
-    private final int HEIGHT = 768;
+    static final int WIDTH = 1024;
+    static final int HEIGHT = 768;
     private ArrayList<java.lang.Character> keyPressed;
     private int key;
 
     private Level currentLevel;
-    private Frederick frederick;
+
 
     public Panel() throws IOException {
 
 
         keyPressed = new ArrayList<java.lang.Character>();
         initLevel(0);
-        frederick = currentLevel.getFrederick();
+
 
 
 
@@ -43,8 +43,8 @@ class Panel extends JPanel implements KeyListener, Runnable {
         g.setColor(Color.BLUE);
         //g.drawString("Frederick ", 30, 400);
 
-        //Fredericks hitbox
-        //g.drawRect(frederick.getHitBox().getxLeft(), frederick.getHitBox().getyTop(), frederick.getHitBox().getxRight()-frederick.getHitBox().getxLeft(), frederick.getHitBox().getyBot()- frederick.getHitBox().getyTop());
+        //hitboxes
+        currentLevel.drawHitBoxes(g);
 
 
     }
@@ -69,35 +69,21 @@ class Panel extends JPanel implements KeyListener, Runnable {
 
             repaint();
 
-            updateCharacters();
+            currentLevel.updateCharacters(keyPressed);
 
         }
     }
 
-    public void updateCharacters(){
-        currentLevel.refreshCharacters();
-        frederick.frederickState(keyPressed);
-        isFrederickDumb();
 
-    }
 
-    public void isFrederickDumb(){ //Keeps Frederick from going into a wall
-        if(frederick.getHitBox().checkFrederickCollision(currentLevel.getPlatforms())){
-            frederick.setY(-frederick.getY()+frederick.getPrevY());
-            frederick.setVelY(-frederick.getVelY());
-        }
-        if(frederick.getHitBox().checkFrederickCollision(currentLevel.getPlatforms())) {
-            frederick.setX(-frederick.getX() + frederick.getPrevX());
-            frederick.setVelX(-frederick.getVelX());
-        }
-    }
+
 
     @Override
     public void keyTyped(KeyEvent e) {
 
     }
     private void initLevel(int lvl) throws IOException {
-        currentLevel = new Level(0);
+        currentLevel = new Level(lvl);
 
     }
     @Override
@@ -139,10 +125,10 @@ class Panel extends JPanel implements KeyListener, Runnable {
     private void removeKey(java.lang.Character c){
         keyPressed.remove(c);
         if(c.equals('w') || c.equals('s')){
-            frederick.setVelY(-frederick.getVelY());
+            currentLevel.getFrederick().setVelY(-currentLevel.getFrederick().getVelY());
         }
         if(c.equals('d') || c.equals('a')){
-            frederick.setVelX(-frederick.getVelX());
+            currentLevel.getFrederick().setVelX(-currentLevel.getFrederick().getVelX());
         }
 
     }
