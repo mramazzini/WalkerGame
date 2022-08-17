@@ -87,7 +87,7 @@ public class SnowMan extends Enemy{
         else{
             frameHolder.setCurrFramePause(frameHolder.getCurrFramePause()+1);
         }
-        refresh();
+
     }
 
 }

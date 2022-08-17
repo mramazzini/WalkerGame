@@ -1,18 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0da63e30-a201-4c31-ae82-0c635c075fce" name="Changes" comment="-Restructered code&#10;-added level class to place all objects in each level&#10;-added hp&#10;-added snowman">
-      <change afterPath="$PROJECT_DIR$/src/Camera.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Weapon.java" afterDir="false" />
+    <list default="true" id="0da63e30-a201-4c31-ae82-0c635c075fce" name="Changes" comment="-Restructered code&#10;-Added Hurtbox and DmgBox&#10;-Added Camera Class&#10;-Added Weapons Class">
+      <change afterPath="$PROJECT_DIR$/Assets/Backgrounds/IceBackground.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Flooring/IceFloor/IceDrop3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Flooring/IceFloor/IceDrop4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Flooring/IceFloor/IceSlantL1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Flooring/IceFloor/IceSlantR2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Flooring/IceFloor/IceTile0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Flooring/IceFloor/IceWallL5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Flooring/IceFloor/IceWallR6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Flooring/IceFloor/black.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Flooring/IceFloor/blank.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Background.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Flooring.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/IceFloor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/IceTile.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Tile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PlatBlue1024.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Flooring/BluePlatform/PlatBlue1024.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PlatBlue256.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Flooring/BluePlatform/PlatBlue256.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PlatBlue512.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Flooring/BluePlatform/PlatBlue512.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BluePlat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BluePlat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Camera.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Character.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Character.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Collider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Collider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Enemy.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Frederick.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Frederick.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Level.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Level.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Panel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Panel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Platform.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Platform.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SnowMan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SnowMan.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Window.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Window.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Weapon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Weapon.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,16 +62,21 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Matteo Ramazzini/Downloads/VisualVMLauncher.jar&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
 }</component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Matteo Ramazzini\IdeaProjects\WalkerGame\Assets\Backgrounds" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Matteo Ramazzini\IdeaProjects\WalkerGame\Assets\Flooring\IceFloor" />
+      <recent name="C:\Users\Matteo Ramazzini\IdeaProjects\WalkerGame\Assets\Flooring\BluePlatform" />
       <recent name="C:\Users\Matteo Ramazzini\IdeaProjects\WalkerGame\Assets\Frederick" />
       <recent name="C:\Users\Matteo Ramazzini\IdeaProjects\WalkerGame\Assets\Frederick\MiniFrederick" />
       <recent name="C:\Users\Matteo Ramazzini\IdeaProjects\WalkerGame\Assets\HPBar" />
-      <recent name="C:\Users\Matteo Ramazzini\IdeaProjects\WalkerGame\Assets\SnowMan" />
-      <recent name="C:\Users\Matteo Ramazzini\IdeaProjects\WalkerGame\Assets" />
     </key>
   </component>
   <component name="RunManager">
@@ -106,7 +130,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660344012976</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="-Restructered code&#10;-Added Hurtbox and DmgBox&#10;-Added Camera Class&#10;-Added Weapons Class">
+      <created>1660414847213</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1660414847213</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -125,6 +156,17 @@
     <MESSAGE value="-Implemented Thread&#10;-Implemented Graphics&#10;-Implemented KeyListener&#10;-Crated Basic Character Class" />
     <MESSAGE value="-Added Gravity&#10;-Added Frederick Physics&#10;-Created Platforms class" />
     <MESSAGE value="-Restructered code&#10;-added level class to place all objects in each level&#10;-added hp&#10;-added snowman" />
-    <option name="LAST_COMMIT_MESSAGE" value="-Restructered code&#10;-added level class to place all objects in each level&#10;-added hp&#10;-added snowman" />
+    <MESSAGE value="-Restructered code&#10;-Added Hurtbox and DmgBox&#10;-Added Camera Class&#10;-Added Weapons Class" />
+    <option name="LAST_COMMIT_MESSAGE" value="-Restructered code&#10;-Added Hurtbox and DmgBox&#10;-Added Camera Class&#10;-Added Weapons Class" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.ArrayIndexOutOfBoundsException" package="java.lang" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

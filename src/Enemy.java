@@ -11,7 +11,7 @@ public class Enemy extends Character{
     public void move(){
         int x = getInitX();
 
-        if(getX()>x){
+        if(getX()>=x){
 
             setVelX(-2);
         }

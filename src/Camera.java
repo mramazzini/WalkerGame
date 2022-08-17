@@ -1,3 +1,5 @@
+import java.awt.*;
+
 public class Camera {
     private int x;
     private int y;
@@ -6,10 +8,16 @@ public class Camera {
     private Collider rightCollide;
     private Collider leftCollide;
     public Camera(int xVal, int yVal, int width, int length){
-        topCollide= new Collider(xVal, width, yVal, length/4, "camera");
-        botCollide= new Collider(xVal, width, yVal+length*3/4, length, "camera");
-        rightCollide= new Collider(xVal+width*4/5, width, yVal, length, "camera");
-        leftCollide= new Collider(xVal, width*1/5, yVal, length, "camera");
+        x = xVal;
+        y= yVal;
+        moveScreenCollider(xVal, yVal, width, length);
+    }
+
+    public void moveScreenCollider(int xVal, int yVal, int width, int length){
+        topCollide= new Collider(xVal, width, yVal-1000, length*1/2, "camera");
+        botCollide= new Collider(xVal, width, yVal+length*1/2, length+1000, "camera");
+        rightCollide= new Collider(xVal+width*1/2, width+1000, yVal, length, "camera");
+        leftCollide= new Collider(xVal-1000, width*1/2, yVal, length, "camera");
     }
 
     public Collider getBotCollide() {
@@ -26,5 +34,16 @@ public class Camera {
 
     public Collider getTopCollide() {
         return topCollide;
+    }
+    public void drawHitBox(Graphics g){
+        g.setColor(Color.MAGENTA);
+        Collider c= getBotCollide();
+        g.drawRect(c.getxLeft(), c.getyTop(), c.getxRight()-c.getxLeft(), c.getyBot()-c.getyTop());
+        c=getLeftCollide();
+        g.drawRect(c.getxLeft(), c.getyTop(), c.getxRight()-c.getxLeft(), c.getyBot()-c.getyTop());
+        c=getRightCollide();
+        g.drawRect(c.getxLeft(), c.getyTop(), c.getxRight()-c.getxLeft(), c.getyBot()-c.getyTop());
+        c=getTopCollide();
+        g.drawRect(c.getxLeft(), c.getyTop(), c.getxRight()-c.getxLeft(), c.getyBot()-c.getyTop());
     }
 }

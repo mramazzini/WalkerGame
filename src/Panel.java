@@ -3,16 +3,19 @@ import java.awt.*;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.IOException;
 import java.util.ArrayList;
 
 
-//Holds Graphics, Main Thread, and KeyListener
-class Panel extends JPanel implements KeyListener, Runnable {
+//Holds Graphics, Main Thread, KeyListener, and MouseListener
+class Panel extends JPanel implements MouseListener, KeyListener, Runnable {
     static final int WIDTH = 1024;
     static final int HEIGHT = 768;
     private ArrayList<java.lang.Character> keyPressed;
     private int key;
+    private boolean drawHitboxes = false;
 
     private Level currentLevel;
 
@@ -21,31 +24,30 @@ class Panel extends JPanel implements KeyListener, Runnable {
 
 
         keyPressed = new ArrayList<java.lang.Character>();
-        initLevel(0);
+        initLevel(2);
 
 
 
 
         new Thread(this).start();
         this.addKeyListener(this);
-
-
-
+        this.addMouseListener(this);
     }
 
     @Override
     protected void paintComponent(Graphics g) {
 
         super.paintComponent(g);
-        g.fillRect(0,0, WIDTH, HEIGHT);
+        //g.fillRect(0,0, WIDTH, HEIGHT);
         currentLevel.drawLevel(g);
         g.setFont(new Font("Monospaced",Font.BOLD+Font.ITALIC,100));
         g.setColor(Color.BLUE);
-        //g.drawString("Frederick ", 30, 400);
+
 
         //hitboxes
-        currentLevel.drawHitBoxes(g);
-
+        if(drawHitboxes){
+            currentLevel.drawHitBoxes(g);
+        }
 
     }
 
@@ -61,6 +63,7 @@ class Panel extends JPanel implements KeyListener, Runnable {
 
         while(true) {
             try {
+
                 Thread.currentThread().sleep(10);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
@@ -74,10 +77,6 @@ class Panel extends JPanel implements KeyListener, Runnable {
         }
     }
 
-
-
-
-
     @Override
     public void keyTyped(KeyEvent e) {
 
@@ -89,7 +88,7 @@ class Panel extends JPanel implements KeyListener, Runnable {
     @Override
     public void keyPressed(KeyEvent e) {
         key= e.getKeyCode();
-        //System.out.println(key);
+
         if(key == 87){ //w
             addKey('w');
         }
@@ -104,9 +103,11 @@ class Panel extends JPanel implements KeyListener, Runnable {
         }
         if(key == 32){ //Spacebar
             addKey(' ');
-
-
         }
+        if(key == 192){ //Grave
+            drawHitboxes= !drawHitboxes;
+        }
+
 
 
 
@@ -149,19 +150,44 @@ class Panel extends JPanel implements KeyListener, Runnable {
         if(key == 65){ //a
             removeKey('a');
 
-
         }
         if(key == 68){ //d
             removeKey('d');
-
-
-
 
         }
         if(key == 32){
             removeKey(' ');
 
         }
+        if(key == 192){ //Grave
+            removeKey('`');
+        }
+
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        System.out.println("Absolute Coordinates: (" + e.getX()+","+e.getY()+")");
+        System.out.println("Relative Coordinates: (" + e.getX()/128+","+e.getY()/128+")");
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
 
     }
 }

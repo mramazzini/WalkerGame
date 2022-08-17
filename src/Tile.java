@@ -1,12 +1,7 @@
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.util.Arrays;
 
-public class Platform{
-
+public class Tile {
     private int xVal;
     private int yVal;
     private int width;
@@ -62,12 +57,16 @@ public class Platform{
     public Collider getHitBox(){
         return hitBox;
     }
-    public void createHitBox(int x, int width, int y, int height){
+    public void createHitBox(int x, int y, int width, int height){
         hasHitBox = true;
-        hitBox = new Collider(x,width,y,height, "solidObject");
-    }
-    public void drawPlatform(Graphics g){
-        g.drawImage(getFrame(), getX(), getY(), null);
+        hitBox = new Collider(x,y,width,height, "solidObject");
     }
 
+    public void drawHitbox(Graphics g){
+        g.setColor(Color.orange);
+        g.drawRect(getHitBox().getxLeft(), getHitBox().getyTop(), getHitBox().getxRight()-getHitBox().getxLeft(), getHitBox().getyBot()-getHitBox().getyTop());
+    }
+    public void drawImage(Graphics g){
+        g.drawImage(getFrame(), getX(), getY(), getWidth(), getHeight(), null);
+    }
 }

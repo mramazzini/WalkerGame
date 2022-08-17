@@ -6,22 +6,71 @@ public class Level {
 
     private Character[] characters;
     private Platform[] platforms;
+    private Background background;
+    private final int cameraSpd = 10;
+    private Flooring[] floorings;
     private Frederick frederick;
     private Camera camera;
     public Level(int lvl) throws IOException {
         frederick = new Frederick();
         camera = new Camera(0,0, Panel.WIDTH, Panel.HEIGHT);
-        if(lvl == 0){
+        int[] black8=new int[] {9,9,9,9,9,9,9,9};
+        if(lvl == 1){
+            background=new Background("snow");
             characters=new Character[]{
 
                     new SnowMan(512+128,768-128-36)};
             platforms = new Platform[]{
-                    new BluePlat(0, 768 - 36, 1024),
-                    new BluePlat(0, 512 - 36, 512),
-                    new BluePlat(512, 256 - 36, 256),
-                    new BluePlat(256, 256 - 36, 256),
-                    new BluePlat(1024, 768 - 36, 1024)
+                    new BluePlat(0, 3, 1024),
+                    new BluePlat(0, 4, 512),
+                    new BluePlat(4, 2, 256),
+                    new BluePlat(2, 2, 256),
+                    new BluePlat(8, 4, 1024)
             };
+            floorings = new Flooring[]{
+
+
+            };
+
+
+        }
+        else if(lvl == 2){
+            background=new Background("snow");
+            floorings = new Flooring[]{
+                    new IceFloor(0,2,new int[][]{
+                            {4,1,1,1,1,1,1,1,},
+                            {6,9,9,9,9,9,9,9,},
+                            {6,9,9,9,9,9,9,9}
+                    }),
+                    new IceFloor(8,3, new int[][]{
+                            {2,1,1,1,1,1,1,1},
+                            black8,
+                            black8
+                    }),
+                    new IceFloor(16,4, new int[][]{
+                            {2,1,1,1,1,1,1,3},
+                            black8,
+                            black8
+                    }),
+                    new IceFloor(24,3, new int[][]{
+                            {1,1,1,1,1,1,1,3},
+                            black8,
+                            black8
+                    }),
+                    new IceFloor(32,2, new int[][]{
+                            {1,1,1,1,1,1,1,5},
+                            {9,9,9,9,9,9,9,7},
+                            {9,9,9,9,9,9,9,7},
+                    }),
+            };
+            characters=new Character[]{};
+
+
+            platforms = new Platform[]{
+                    new BluePlat(4, 1, 1024),
+            };
+
+
         }
 
         else{
@@ -56,39 +105,104 @@ public class Level {
         return platforms;
     }
     public void drawLevel(Graphics g){
-        g.drawImage(frederick.getFrame(), frederick.getX(), frederick.getY(), null);
-        g.drawImage(frederick.getHpImg(), frederick.getHP().getxVal(), frederick.getHP().getyVal(), null);
-        for(int i=0; i<characters.length; i++){
-            g.drawImage(characters[i].getFrame(), characters[i].getX(), characters[i].getY(), null);
-            g.drawImage(characters[i].getHpImg(), characters[i].getHP().getxVal(), characters[i].getHP().getyVal(), null);
+        background.drawBackground(g,2);
+        frederick.drawCharacter(g);
+        frederick.drawCharacter(g);
+        for(Character c: characters){
+            c.drawCharacter(g);
         }
 
-        for(int i=0; i<platforms.length; i++){
-            g.drawImage(platforms[i].getFrame(), platforms[i].getX(), platforms[i].getY(), null);
+        for(Platform p :platforms){
+            p.drawPlatform(g);
+        }
+        for(Flooring f: floorings){
+            f.drawTiles(g);
+
         }
     }
     public void adjustForCamera(){
-
+        if(frederick.getHitBox().checkCollision(camera.getTopCollide())){
+            moveEverything(0,cameraSpd);
+        }
+        if(frederick.getHitBox().checkCollision(camera.getBotCollide())){
+            moveEverything(0,-cameraSpd);
+        }
+        if(frederick.getHitBox().checkCollision(camera.getLeftCollide())){
+            moveEverything(cameraSpd,0);
+        }
+        if(frederick.getHitBox().checkCollision(camera.getRightCollide())){
+            moveEverything(-cameraSpd,0);
+        }
+    }
+    public void moveEverything(int offsetX, int offsetY){
+        for(Platform p:platforms){
+            p.setX(offsetX);
+            p.setY(offsetY);
+        }
+        for(Character c:characters){
+            c.setX(offsetX);
+            c.setY(offsetY);
+            c.setInitX(c.getInitX()+offsetX);
+            c.setInitY(c.getInitY()+offsetY);
+        }
+        for(Flooring f:floorings){
+            f.setX(offsetX);
+            f.setY(offsetY);
+        }
+        background.setX(offsetX);
+        background.setY(offsetY);
+        frederick.setX(offsetX);
+        frederick.setY(offsetY);
     }
     public void updateCharacters(ArrayList keyPressed){
         refreshCharacters();
+        adjustForCamera();
         frederick.frederickState(keyPressed);
         isFrederickDumb();
 
+
+
+
+
+
+
     }
     public void isFrederickDumb(){ //Keeps Frederick from going into a wall
-        Collider[] c= new Collider[getPlatforms().length];
-        for(int i =0; i<c.length; i++){
-            c[i]=getPlatforms()[i].getHitBox();
+        int tileCnt =0;
+        for(Flooring f:floorings){
+            for(Tile t[]:f.getTiles()){
+                tileCnt=tileCnt+t.length;
+            }
         }
-        if(frederick.getHitBox().checkFrederickCollision(c)){
+
+        Collider[] c= new Collider[getPlatforms().length+tileCnt];
+        int count=0;
+        for(Platform p: platforms){
+            c[count]=p.getHitBox();
+            count++;
+        }
+
+        for(Flooring f:floorings){
+            for(Tile[] t: f.getTiles()){
+                for(int i =0; i<t.length; i++){
+                    c[count]=t[i].getHitBox();
+                    count++;
+                }
+            }
+        }
+
+        if(frederick.getHitBox().checkCollisions(c)){
             frederick.setY(-frederick.getY()+frederick.getPrevY());
             frederick.setVelY(-frederick.getVelY());
         }
-        if(frederick.getHitBox().checkFrederickCollision(c)) {
+        if(frederick.getHitBox().checkCollisions(c)) {
             frederick.setX(-frederick.getX() + frederick.getPrevX());
             frederick.setVelX(-frederick.getVelX());
         }
+
+    }
+    public void checkDamageCollision(){
+        //Collider[] c = new Collider[frederick.getCurrentWeapon().getHitBoxInt()]
     }
     public void drawHitBoxes(Graphics g){
 
@@ -116,16 +230,20 @@ public class Level {
                     frederick.getCurrentWeapon().getHitBoxInt(frederick.frameHolder.getFrameNum())[i][3]-frederick.getCurrentWeapon().getHitBoxInt(frederick.frameHolder.getFrameNum())[i][2]);
         }
 
+        //Draw Hrt Boxes
+        g.setColor(Color.RED);
+        for(Collider i:frederick.getHurtBoxes()){
+            g.drawRect(i.getxLeft(),i.getyTop(),i.getxRight()-i.getxLeft(), i.getyBot()-i.getyTop());
+        }
+        //Draw Flooring
+
+        for(Flooring f: floorings){
+            f.drawHitboxes(g);
+
+        }
+
         //Draw Camera
-        g.setColor(Color.MAGENTA);
-        Collider c= camera.getBotCollide();
-        g.drawRect(c.getxLeft(), c.getyTop(), c.getxRight()-c.getxLeft(), c.getyBot()-c.getyTop());
-        c=camera.getLeftCollide();
-        g.drawRect(c.getxLeft(), c.getyTop(), c.getxRight()-c.getxLeft(), c.getyBot()-c.getyTop());
-        c=camera.getRightCollide();
-        g.drawRect(c.getxLeft(), c.getyTop(), c.getxRight()-c.getxLeft(), c.getyBot()-c.getyTop());
-        c=camera.getTopCollide();
-        g.drawRect(c.getxLeft(), c.getyTop(), c.getxRight()-c.getxLeft(), c.getyBot()-c.getyTop());
+        camera.drawHitBox(g);
 
     }
 

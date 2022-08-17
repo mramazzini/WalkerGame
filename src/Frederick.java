@@ -7,10 +7,12 @@ import java.util.ArrayList;
 public class Frederick extends Character {
     private String stance;
     private boolean isAttacking;
+    private int[][] frederickHurtBoxes;
 
     public Frederick() throws IOException {
         createWeapon("sword");
         createDmgBoxes(getCurrentWeapon().getHitBoxInt(0));
+        createHurtBoxes(getFrederickHurtBoxes());
         setType("frederick");
         isAttacking=false;
         stance = "Battle";
@@ -186,6 +188,12 @@ public class Frederick extends Character {
 
 
         refresh();
+    }
+    public int[][] getFrederickHurtBoxes(){
+        frederickHurtBoxes = new int[][]{
+                {getX(), getX()+getWidth(),getY(),getY()+getLength()}
+        };
+        return frederickHurtBoxes;
     }
 
     public void setStance(String stance) {

@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
@@ -37,10 +38,17 @@ public abstract class Character {
     private boolean hasGravity;
     private final int GRAVSPEED = 5;
 
+    public Collider[] getHurtBoxes(){
+        Collider[] arr = new Collider[hurtBoxes.size()];
+        for(int i=0; i< hurtBoxes.size(); i++){
+            arr[i] = hurtBoxes.get(i);
+        }
+        return arr;
+    }
 
     public void createHurtBoxes(int[][] vals){
         hurtBoxes = new ArrayList<Collider>();
-        for(int i=0; i<vals[0].length; i++){
+        for(int i=0; i<vals.length; i++){
             hurtBoxes.add(new Collider(vals[i][0], vals[i][1], vals[i][2], vals[i][3], "hurtBox"));
         }
     }
@@ -49,9 +57,9 @@ public abstract class Character {
         currentWeapon=new Weapon(xVal,yVal,type);
     }
     public void createDmgBoxes(int[][] vals){
-        hurtBoxes = new ArrayList<Collider>();
+        dmgBoxes = new ArrayList<Collider>();
         for(int i=0; i<vals.length; i++){
-            hurtBoxes.add(new Collider(vals[i][0], vals[i][1], vals[i][2], vals[i][3], "hurtBox"));
+            dmgBoxes.add(new Collider(vals[i][0], vals[i][1], vals[i][2], vals[i][3], "attackBox"));
         }
     }
     public void setFrameHolder(String[] path){
@@ -124,6 +132,7 @@ public abstract class Character {
             hitBox.setyTop(hitBox.getyTop()+updateY);
             hitBox.setyBot(hitBox.getyBot()+updateY);
         }
+
     }
     public void initGravity(){
         hasGravity=true;
@@ -238,6 +247,11 @@ public abstract class Character {
     }
     public void resetFallingSpeed(){
         fallingSpeed=0;
+    }
+
+    public void drawCharacter(Graphics g){
+        g.drawImage(getFrame(), getX(), getY(), null);
+        g.drawImage(getHpImg(), getHP().getxVal(), getHP().getyVal(), null);
     }
 
 }

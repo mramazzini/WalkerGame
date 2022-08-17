@@ -14,6 +14,7 @@ public class Weapon {
 
     }
 
+
     public int[][] getHitBoxInt(int frame) {
         if (type.equals("sword")) {
             if (frame == 4) {
